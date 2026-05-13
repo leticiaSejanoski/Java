@@ -21,22 +21,41 @@ public class estacionamento {
         LocalTime horaEntrada = LocalTime.parse(entrada, formato);
         LocalTime horaSaida = LocalTime.parse(saida, formato);
 
-        Duration diferenca = Duration.between(horaEntrada, horaSaida);
+        Duration diferenca;
 
-        long horas = diferenca.toHours();
-        long minutos = diferenca.toMinutes() % 60;
+        if(horaSaida.isBefore(horaEntrada)){
+            diferenca = Duration.between(horaEntrada, horaSaida); 
+        }else{
+            diferenca = Duration.between(horaEntrada, horaSaida);
+        }
 
-        double total = 0;
+        long minutos = diferenca.toMinutes();
+
+        if(minutos < 0){
+            minutos += 24 * 60;
+        }
+
+        double total = 5.00;
+        int i = 0;
+        long minutosTotais = minutos - 60;
+        while(minutosTotais > 0){
+            minutosTotais -= 15;
+            i += 1;
+        }
+
+        total += i * 2;
      
         System.out.println("--------------------");
         System.out.println("Recibo");
         System.out.println("--------------------");
-        System.out.println("Placa:");
-        System.out.println("Entrada:");
-        System.out.println("Saída:");
-        System.out.println("Tempo total (em minutos):");
-        System.out.println("Total a pagar: ");
+        System.out.printf("Placa: %s\n", placa);
+        System.out.printf("Entrada: %s\n", horaEntrada.format(formato));
+        System.out.printf("Saída: %s\n", horaSaida.format(formato));
+        System.out.printf("Tempo total (em minutos): %d\n", minutos);
+        System.out.printf("Total a pagar: R$%.2f\n", total);
         System.out.println("--------------------");
 
+
+        scanner.close();
      }
 }
