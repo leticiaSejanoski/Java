@@ -8,7 +8,6 @@ public class estacionamento {
 
         System.out.print("Digite a placa: ");
         String placa = scanner.nextLine();
-       
 
         System.out.print("Digite a hora de entrada: (hh:mm): ");
         String entrada = scanner.nextLine();
@@ -23,28 +22,24 @@ public class estacionamento {
 
         Duration diferenca;
 
-        if(horaSaida.isBefore(horaEntrada)){
-            diferenca = Duration.between(horaEntrada, horaSaida); 
-        }else{
-            diferenca = Duration.between(horaEntrada, horaSaida);
-        }
+        diferenca = Duration.between(horaEntrada, horaSaida);
 
         long minutos = diferenca.toMinutes();
 
-        if(minutos < 0){
+        if (minutos < 0) {
             minutos += 24 * 60;
         }
 
         double total = 5.00;
         int i = 0;
         long minutosTotais = minutos - 60;
-        while(minutosTotais > 0){
+        while (minutosTotais > 0) {
             minutosTotais -= 15;
             i += 1;
         }
 
         total += i * 2;
-     
+
         System.out.println("--------------------");
         System.out.println("Recibo");
         System.out.println("--------------------");
@@ -55,7 +50,6 @@ public class estacionamento {
         System.out.printf("Total a pagar: R$%.2f\n", total);
         System.out.println("--------------------");
 
-
         scanner.close();
-     }
+    }
 }
