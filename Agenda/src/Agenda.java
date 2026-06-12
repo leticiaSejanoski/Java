@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Agenda {
     public static void menuPrincipal(){
@@ -154,6 +153,7 @@ public class Agenda {
                     break;
                 case 3:
                     excluirContato(lista, scanner);
+                    break;
                 case 4:
                     listarContatos(lista);
                 break;
